@@ -44,7 +44,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.spinnerStatus = false;
       alert('Verifique su correo electrónico');
       this.initFormRequestPasswordChange();
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/iniciar-sesion');
     }, (err) => {
       console.log(err);
       this.spinnerStatus = false;

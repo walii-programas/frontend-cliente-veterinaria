@@ -1,1 +1,65 @@
-<p>pet-vaccination-cards works!</p>
+<div class="pet-vaccination-card">
+
+  <div class="container">
+
+    <div class="row" *ngIf="pet">
+      <div class="col">
+        <h3>Tarjetas de Vacunas de: {{ pet.name }} </h3>
+        <button class="btn btn-outline-primary" (click)="backToPets()">Volver a Mis Mascotas</button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col" *ngIf="spinnerStatus">
+        <div class="spinner-border" role="status"></div>
+      </div>
+      
+      <div class="col">
+
+        <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-0">
+
+          <ngb-panel id="config-panel-{{i}}" *ngFor="let pvcad of petVaccinationCardsAndDetails; index as i">
+  
+            <ng-template ngbPanelTitle>
+              <h4>Descripción:<span><b> {{ pvcad.petVaccinationCard.description }} </b></span></h4>
+            </ng-template>
+  
+            <ng-template ngbPanelContent>
+
+              <table class="table table-outline table-hover">
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Vacuna</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Fecha de vacunación</th>
+                  <th scope="col">Veterinario que vacunó</th>
+                  <th scope="col">Código de veterinario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let vaccine of pvcad.vaccines; index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ vaccine.name }}</td>
+                  <td>{{ vaccine.pivot.state }}</td>
+                  <td>{{ vaccine.pivot.date }}</td>
+                  <td><ng-container *ngIf="vaccine.pivot.fk_id_vet">{{ vaccine.pivot.vet.firstname }}</ng-container></td>
+                  <td><ng-container *ngIf="vaccine.pivot.fk_id_vet">{{ vaccine.pivot.vet.cmvp }}</ng-container></td>
+                </tr>
+                </tbody>
+              </table>
+  
+            </ng-template>
+  
+          </ngb-panel>
+  
+        </ngb-accordion>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

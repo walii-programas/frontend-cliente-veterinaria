@@ -12,6 +12,7 @@ import { ClientComponent } from './modules/client/components/client.component';
   import { PetVaccinationCardsComponent } from './modules/client/components/pet/pet-vaccination-cards/pet-vaccination-cards.component';
   import { PetSimpleServicesComponent } from './modules/client/components/pet/pet-simple-services/pet-simple-services.component';
   import { PetHospitalizedServicesComponent } from './modules/client/components/pet/pet-hospitalized-services/pet-hospitalized-services.component';
+  import { UnvaccinatedVaccinesComponent } from './modules/client/components/unvaccinated-vaccines/unvaccinated-vaccines.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/components/forgot-password.component';
 import { ForgotPasswordUpdateComponent } from './modules/forgot-password/components/forgot-password-update/forgot-password-update.component';
 
@@ -26,7 +27,8 @@ const routes: Routes = [
     {path: 'mascotas', component: PetComponent},
     {path: 'servicios-simples/:id', component: PetSimpleServicesComponent},
     {path: 'servicios-internado/:id', component: PetHospitalizedServicesComponent},
-    {path: 'tarjetas-vacunas/:id', component: PetVaccinationCardsComponent}
+    {path: 'tarjetas-vacunas/:id', component: PetVaccinationCardsComponent},
+    {path: 'aun-no-vacunadas', component: UnvaccinatedVaccinesComponent}
   ]},
   {path: 'olvide-contrasena', component: ForgotPasswordComponent},
   {path: 'restablecer-contrasena/:verification_token', component: ForgotPasswordUpdateComponent}

@@ -40,12 +40,12 @@
           <a class="navbar-brand" routerLink="/contacto">Contacto</a>
           <a class="navbar-brand" routerLink="/blogs">Blog</a>
         </div>
-        <div *ngIf="loginStatus" class="col-2 justify-content-end">
+        <div *ngIf="!loginStatus" class="col-2 justify-content-end">
           <a class="navbar-brand">
             <button class="btn btn-outline-primaryBG" routerLink="/iniciar-sesion">Iniciar Sesión</button>
           </a>
         </div>
-        <div *ngIf="!loginStatus" class="col-2 justify-content-end">
+        <div *ngIf="loginStatus" class="col-2 justify-content-end">
           <button class="navbar-brand btn btn-primary" routerLink="/cliente">
             <img src="../../../../assets/svg/user-2.svg" alt="avatar">
             <span class="ml-2">Ir a mi perfil</span>

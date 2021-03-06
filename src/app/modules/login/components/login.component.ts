@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', res['access_token']);
         localStorage.setItem('idUser', res['user'].id);
         this.spinnerStatus = false;
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/cliente');
       } else {
         this.spinnerStatus = false;
         alert('Este usuario no está autorizado');

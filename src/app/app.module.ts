@@ -26,6 +26,7 @@ import { PetHospitalizedServicesComponent } from './modules/client/components/pe
 import { PetVaccinationCardsComponent } from './modules/client/components/pet/pet-vaccination-cards/pet-vaccination-cards.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/components/forgot-password.component';
 import { ForgotPasswordUpdateComponent } from "./modules/forgot-password/components/forgot-password-update/forgot-password-update.component";
+import { UnvaccinatedVaccinesComponent } from './modules/client/components/unvaccinated-vaccines/unvaccinated-vaccines.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ForgotPasswordUpdateComponent } from "./modules/forgot-password/compone
     PetHospitalizedServicesComponent,
     PetVaccinationCardsComponent,
     ForgotPasswordComponent,
-    ForgotPasswordUpdateComponent
+    ForgotPasswordUpdateComponent,
+    UnvaccinatedVaccinesComponent
   ],
   imports: [
     BrowserModule,

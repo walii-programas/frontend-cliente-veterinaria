@@ -23,15 +23,19 @@ export class PetComponent implements OnInit {
   /* UI */
   // variables
   pets: Pet[];
+  spinnerStatus = false;
   // methods
   getPets() {
+    this.spinnerStatus = true;
     this.petService.getPetsByClient(/* localStorage.getItem('idUser') */'1').subscribe((res) => {
+      this.spinnerStatus = false;
       res['data'].forEach(pet => {
         pet.birthdate = this.datePipe.transform(pet.birthdate, "dd 'de' MMMM 'del' y")
       });
       this.pets = res['data'];
     }, (err) => {
       console.log(err);
+      this.spinnerStatus = false;
     });
   }
 

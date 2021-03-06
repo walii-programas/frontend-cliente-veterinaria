@@ -29,7 +29,7 @@ export class ForgotPasswordService {
 
   changePassword(password: string, verification_token: string) {
     return this.http.put(
-      this.urlApi + `/client/client/change-password/${verification_token}`,
+      this.urlApi + `/client/clients/change-password/${verification_token}`,
       this.gAuthServ.getFormUrlEncoded({
         password: password
       }),

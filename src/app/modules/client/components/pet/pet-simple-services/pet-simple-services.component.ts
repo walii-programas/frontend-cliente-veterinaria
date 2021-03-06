@@ -41,16 +41,20 @@ export class PetSimpleServicesComponent implements OnInit {
   idPet: string;
   pet: Pet = undefined;
   simpleServices: DataSimpleServices[];
+  spinnerStatus = false;
   // methods
   getSimpleServicesByPet() {
+    this.spinnerStatus = true;
     this.petSimpleService.getSimpleSericesByPet(this.idPet).subscribe((res) => {
       // console.log(res);
       res['data'].forEach(pss => {
         pss.simpleService.date = this.datePipe.transform(pss.simpleService.date, "EEEE, dd 'de' MMMM 'del' y, h:mm a");
       });
+      this.spinnerStatus = false;
       this.simpleServices = res['data'];
     }, (err) => {
       console.log(err);
+      this.spinnerStatus = false;
     });
   }
 

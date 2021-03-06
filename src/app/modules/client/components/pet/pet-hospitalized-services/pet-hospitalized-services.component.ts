@@ -41,17 +41,21 @@ export class PetHospitalizedServicesComponent implements OnInit {
   idPet: string;
   pet: Pet = undefined;
   hospitalizedServices: DataHospitalizedService[];
+  spinnerStatus = false;
   // methods
   getHospitalizedServicesByPet() {
+    this.spinnerStatus = true;
     this.petHospitalizedService.getHospitalizedServicesByPet(this.idPet).subscribe((res) => {
       // console.log(res);
       res['data'].forEach(phs => {
         phs.hospitalizedService.date = this.datePipe.transform(phs.hospitalizedService.date, "EEEE, dd 'de' MMMM 'del' y, h:mm a");
         phs.hospitalizedService.updated_at = this.datePipe.transform(phs.hospitalizedService.updated_at, "EEEE, dd 'de' MMMM 'del' y, h:mm a");
       });
+      this.spinnerStatus = false;
       this.hospitalizedServices = res['data'];
     }, (err) => {
       console.log(err);
+      this.spinnerStatus = false;
     });
   }
 

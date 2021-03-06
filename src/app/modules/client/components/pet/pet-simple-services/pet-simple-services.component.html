@@ -13,6 +13,10 @@
     <hr>
 
     <div class="row">
+      <div class="col" *ngIf="spinnerStatus">
+        <div class="spinner-border" role="status"></div>
+      </div>
+      
       <div class="col">
 
         <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-0">

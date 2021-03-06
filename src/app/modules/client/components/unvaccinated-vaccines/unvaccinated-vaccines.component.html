@@ -1,0 +1,34 @@
+<div class="unvaccinated-vaccines">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <h3>Próximas vacunas</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4" *ngFor="let uVaccine of unvaccinatedVaccines; index as i">
+
+        <div class="card text-center text-muted">
+          <div class="card-header">
+            <b>Mascota:</b> {{ uVaccine.pet_name }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><b>Vacuna:</b> {{ uVaccine.vaccine_name }}</h5>
+            <p class="card-text"><b>Tarjeta de Vacunas:</b> {{ uVaccine.pet_vaccination_card_description }}</p>
+            <p class="card-text"><b>Estado:</b> {{ uVaccine.pet_vaccination_card_vaccine_state }}</p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          </div>
+          <div class="card-footer">
+            <b>Fecha de vacunación:</b> {{ uVaccine.pet_vaccination_card_vaccine_date }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

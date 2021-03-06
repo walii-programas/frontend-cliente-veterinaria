@@ -1,7 +1,8 @@
 .navbar {
+  margin-top: -11vh;
   width: 6rem;
-  height: 90vh;
-  position: absolute;
+  height: 100vh;
+  position: fixed;
   background-color: var(--bg-secondary);
   transition: width 200ms ease;
   z-index: 2;

@@ -4,8 +4,11 @@ import { Vaccine } from "src/app/global/interfaces/vaccine.interface";
 
 export interface dataPetVaccinationCardAndDetail {
   petVaccinationCard: PetVaccinationCard;
-  vaccines: [
-    vaccine: Vaccine,
-    pivot: PetVaccinationCardDetail
-  ];
+  vaccines: dataVaccine[];
+}
+
+interface dataVaccine {
+  id: string;
+  name: string;
+  pivot: PetVaccinationCardDetail;
 }
