@@ -1,0 +1,28 @@
+.blog {
+  padding: 1rem;
+}
+
+.blog__item {
+  // background-color: var(--bg-secondary);
+  // border: 0.3rem solid var(--primary-color);
+  border-radius: 0.7rem;
+  margin-bottom: 2rem;
+  padding: 2rem 1rem;
+  h3 {
+    // color: var(--text-primary);
+    color: var(--text-primary);
+  }
+  img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0.7rem;
+  }
+  
+  p {
+    // color: var(--text-primary);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    text-align: justify;
+  }
+}

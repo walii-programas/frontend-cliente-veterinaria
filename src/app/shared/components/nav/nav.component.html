@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <ul class="navbar-nav">
+
+    <li class="nav-item" routerLink="/cliente/mascotas">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/pet.svg" alt="pet">
+        <span class="link-text">Mis Mascotas</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/cliente/vacunas">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/vaccine.svg" alt="vaccine">
+        <span class="link-text">Próximas Vacunas</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/cliente">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/user-2.svg" alt="user">
+        <span class="link-text">Mi Perfil</span>
+      </a>
+    </li>
+
+    <li class="nav-item" id="themeButton">
+      <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+        <span class="sr-only">Cargando...</span>
+      </div>
+    </li>
+
+    <li class="nav-item" id="themeButton">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/logout.svg" alt="logout">
+        <span class="link-text">Cerrar Cesión</span>
+      </a>
+    </li>
+  </ul>
+</nav>

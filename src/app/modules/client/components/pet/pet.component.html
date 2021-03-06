@@ -1,0 +1,48 @@
+<div class="pet">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <h2>Mis Mascotas</h2>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col" *ngFor="let pet of pets; index as i">
+        <div class="card">
+
+          <div class="card-body">
+            <h5 class="card-title">{{ pet.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ pet.breed }}</h6>
+            <div class="mb-2">
+              <p class="card-text"><b>Especie:</b> {{ pet.species }}</p>
+              <p class="card-text"><b>Fecha de nac.:</b> {{ pet.birthdate }}</p>
+              <p class="card-text"><b>Color:</b> {{ pet.color }}</p>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-outline-primary" routerLink="/cliente/tarjetas-vacunas/{{pet.id}}">Ver Tarjetas de Vacunas</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-outline-primary" routerLink="/cliente/servicios-simples/{{pet.id}}">Ver Servicios Simples</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-outline-primary" routerLink="/cliente/servicios-internado/{{pet.id}}">Ver Servicios de Internado</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

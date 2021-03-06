@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalAuthService } from "../../../global/services/globalAuth.service";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private gAuthServ: GlobalAuthService
+  ) {
+    this.loginStatus = this.gAuthServ.getLoginStatus();
+  }
 
   ngOnInit(): void {
   }
+
+  /* UI */
+  // variables
+  loginStatus = false;
 
 }

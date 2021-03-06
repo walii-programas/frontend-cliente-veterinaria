@@ -23,3 +23,11 @@ button {
   font-size: 1.1rem;
   border-width: 2px;
 }
+
+img {
+  width: 40px;
+}
+
+span:hover {
+  color: var(--text-secondary);
+}

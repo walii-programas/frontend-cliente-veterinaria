@@ -1,0 +1,126 @@
+<div class="pet-hospitalized-services">
+
+  <div class="container">
+    
+
+    <div class="row" *ngIf="pet">
+      <div class="col">
+        <h3>Servicios de Internado de: {{ pet.name }} </h3>
+        <button class="btn btn-outline-primary" (click)="backToPets()">Volver a Mis Mascotas</button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col">
+
+        <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-0">
+          <ngb-panel id="config-panel-{{i}}" *ngFor="let phs of hospitalizedServices; index as i">
+            <ng-template ngbPanelTitle>
+              <h4>Diagnóstico del Servicio:<span><b> {{ phs.hospitalizedService.diagnosis }} </b></span></h4>
+            </ng-template>
+            <ng-template ngbPanelContent>
+
+              <div class="row">
+                <div class="col">
+                  <h3><span>Datos del Servicio de Internado</span></h3>
+                </div>
+                <div class="col">
+                  <h3><span>Datos de la mascota en el momento del servicio</span></h3>
+                </div>
+                <div class="col">
+                  <h3><span>Veterinario que registró el servicio</span></h3>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-4">
+
+                  <!-- <h3><span>Datos del Servicio Internado</span></h3> -->
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Fecha de Creación:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.date }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Descripción:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.description }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Tratamiento:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.treatment }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Costo:</b>
+                    <label class="col col-form-label">S/ {{ phs.hospitalizedService.cost }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Última Actualización:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.updated_at }}</label>
+                  </div>
+
+                </div>
+
+                <div class="col-4">
+
+                  <!-- <h3><span>Datos de la mascota en el momento del servicio</span></h3> -->
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Peso:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.weight }} Kg.</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Temperatura:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.temperature }} °C</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Síntomas:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.symptoms }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Observaciones:</b>
+                    <label class="col col-form-label">{{ phs.hospitalizedService.observations }}</label>
+                  </div>
+
+                </div>
+
+                <div class="col-4">
+
+                  <!-- <h3><span>Veterinario que registró el servicio</span></h3> -->
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group row">
+                        <b class="col-4 col-form-label">Nombre completo:</b>
+                        <label class="col col-form-label"> {{ phs.vet.firstname }} {{ phs.vet.lastname }}</label>
+                      </div>
+                      <div class="form-group row">
+                        <b class="col-4 col-form-label">Código de veterinario:</b>
+                        <label class="col col-form-label"> {{ phs.vet.cmvp }}</label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

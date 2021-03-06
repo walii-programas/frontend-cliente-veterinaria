@@ -18,7 +18,8 @@ $theme-colors: (
   "primary": #7D6B91,
   "secondary": #90323D,
   "primaryBG": #FCFCFC,
-  "secondaryBG": #272838
+  "secondaryBG": #272838,
+  "thirdBG": #5D536B
 );
 
 /* Importing Bootstrap SCSS file. */
@@ -32,6 +33,8 @@ $theme-colors: (
 
 body {
   background-color: var(--bg-primary);
+  // background-color: var(--bg-secondary);
+  // color: var(--text-secondary);
 }
 
 h1, h2, h3, h4, h5, h6 {

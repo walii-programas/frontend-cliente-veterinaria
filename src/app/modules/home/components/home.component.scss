@@ -1,0 +1,28 @@
+span {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.container-fluid span {
+  color: var(--text-secondary);
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+img {
+  width: 120px;
+}
+
+p {
+  text-align: justify;
+}
+
+iframe {
+  border: 0.7rem;
+  width: 99vw;
+  height: 500px;
+}
+
+ul li {
+  list-style: none;
+}
