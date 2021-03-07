@@ -23,17 +23,21 @@ export class UnvaccinatedVaccinesComponent implements OnInit {
   /* UI */
   // variables
   unvaccinatedVaccines: dataUnvaccinatedVaccines[];
+  spinnerStatus = false;
 
   // methods
   getUnvaccinatedVaccines() {
+    this.spinnerStatus = true;
     this.unvaccinatedVaccineService.getUnvaccinatedVaccinesByClient().subscribe((res) => {
       // console.log(res);
       res['data'].forEach(uVaccine => {
         uVaccine.pet_vaccination_card_vaccine_date = this.datePipe.transform(uVaccine.pet_vaccination_card_vaccine_date, "EEEE, dd 'de' MMMM 'del' y");
       });
       this.unvaccinatedVaccines = res['data'];
+      this.spinnerStatus = false;
     }, (err) => {
       console.log(err);
+      this.spinnerStatus = false;
     });
   }
 

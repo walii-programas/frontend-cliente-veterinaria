@@ -11,7 +11,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private gAuthServ: GlobalAuthService
   ) {
-    this.loginStatus = this.gAuthServ.getLoginStatus();
+    // this.loginStatus = this.gAuthServ.getLoginStatus();
+    this.checkStatusLogin();
   }
 
   ngOnInit(): void {
@@ -20,5 +21,12 @@ export class HeaderComponent implements OnInit {
   /* UI */
   // variables
   loginStatus = false;
+
+  methods
+  checkStatusLogin() {
+    setInterval(() => {
+    this.loginStatus = this.gAuthServ.getLoginStatus();
+  }, 2000);
+  }
 
 }

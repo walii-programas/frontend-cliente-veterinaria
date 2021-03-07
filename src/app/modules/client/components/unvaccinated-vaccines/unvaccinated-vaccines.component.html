@@ -9,6 +9,10 @@
     </div>
 
     <div class="row">
+      <div class="col" *ngIf="spinnerStatus">
+        <div class="spinner-border" role="status"></div>
+      </div>
+      
       <div class="col-4" *ngFor="let uVaccine of unvaccinatedVaccines; index as i">
 
         <div class="card text-center text-muted">

@@ -15,6 +15,10 @@ import { ClientComponent } from './modules/client/components/client.component';
   import { UnvaccinatedVaccinesComponent } from './modules/client/components/unvaccinated-vaccines/unvaccinated-vaccines.component';
 import { ForgotPasswordComponent } from './modules/forgot-password/components/forgot-password.component';
 import { ForgotPasswordUpdateComponent } from './modules/forgot-password/components/forgot-password-update/forgot-password-update.component';
+import { ProfileComponent } from './modules/client/components/profile/profile.component';
+
+// guards
+import { AuthGuard } from './global/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'inicio', pathMatch: 'full'},
@@ -28,8 +32,9 @@ const routes: Routes = [
     {path: 'servicios-simples/:id', component: PetSimpleServicesComponent},
     {path: 'servicios-internado/:id', component: PetHospitalizedServicesComponent},
     {path: 'tarjetas-vacunas/:id', component: PetVaccinationCardsComponent},
-    {path: 'aun-no-vacunadas', component: UnvaccinatedVaccinesComponent}
-  ]},
+    {path: 'aun-no-vacunadas', component: UnvaccinatedVaccinesComponent},
+    {path: 'mi-perfil', component: ProfileComponent}
+  ], canActivate: [AuthGuard]},
   {path: 'olvide-contrasena', component: ForgotPasswordComponent},
   {path: 'restablecer-contrasena/:verification_token', component: ForgotPasswordUpdateComponent}
 ];

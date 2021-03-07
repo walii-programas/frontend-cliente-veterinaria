@@ -38,8 +38,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('expires_in', (this.gAuthServ.currentLoginStatus).toString());
         localStorage.setItem('token', res['access_token']);
         localStorage.setItem('idUser', res['user'].id);
+        localStorage.setItem('user', JSON.stringify(res['user']));
         this.spinnerStatus = false;
-        this.router.navigateByUrl('/cliente');
+        this.router.navigateByUrl('/cliente/mi-perfil');
       } else {
         this.spinnerStatus = false;
         alert('Este usuario no está autorizado');

@@ -8,29 +8,16 @@
 
     <hr>
 
-    <div class="service__item row">
+    <div class="service__item row" *ngFor="let service of services">
       <div class="col">
         <div class="row">
           <div class="col">
-            <img src="../../../../assets/./img/petlogin.jpeg" alt="service-image">
+            <!-- <img src="../../../../assets/./img/petlogin.jpeg" alt="service-image"> -->
+            <img src="{{ service.image }}" alt="service-image">
           </div>
           <div class="col align-self-center">
-            <h3>Baño de Mascota</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic odit, possimus error reprehenderit quos atque reiciendis modi esse, officiis enim quo excepturi sapiente corrupti? Earum aliquid ipsum optio tempora suscipit!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="service__item row">
-      <div class="col">
-        <div class="row">
-          <div class="col">
-            <img src="../../../../assets/./img/petlogin.jpeg" alt="service">
-          </div>
-          <div class="col align-self-center">
-            <h3>Baño de Mascota</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic odit, possimus error reprehenderit quos atque reiciendis modi esse, officiis enim quo excepturi sapiente corrupti? Earum aliquid ipsum optio tempora suscipit!</p>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
           </div>
         </div>
       </div>
