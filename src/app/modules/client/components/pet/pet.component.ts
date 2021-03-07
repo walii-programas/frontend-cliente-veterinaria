@@ -27,7 +27,7 @@ export class PetComponent implements OnInit {
   // methods
   getPets() {
     this.spinnerStatus = true;
-    this.petService.getPetsByClient(/* localStorage.getItem('idUser') */'1').subscribe((res) => {
+    this.petService.getPetsByClient(localStorage.getItem('idUser').toString()).subscribe((res) => {
       this.spinnerStatus = false;
       res['data'].forEach(pet => {
         pet.birthdate = this.datePipe.transform(pet.birthdate, "dd 'de' MMMM 'del' y")
