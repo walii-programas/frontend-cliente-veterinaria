@@ -1,0 +1,191 @@
+<div class="pet">
+
+  <!-- PET -->
+  <div class="petContainer container">
+
+    <!-- menu -->
+
+    <div class="pet__clientdetails">
+
+      <div class="row">
+        <h2>Mascotas</h2>
+      </div>
+
+      <div class="spinner-border" role="status" *ngIf="spinnerStatusClient">
+        <span class="sr-only">Cargando...</span>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <h3>Mascotas de Cliente: <span> {{ client.firstname }} {{ client.lastname }}  </span> </h3>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" (click)="switchPetList()">Lista de Mascotas</button>
+          <button class="btn btn-primary" (click)="switchPetReg()">Registrar nueva Mascota</button>
+          <button class="btn btn-secondary" routerLink="/home/clientes">Volver a Clientes</button>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="spinner-border" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+
+    <!-- register new pet -->
+
+    <div class="container" *ngIf="switchRegpet">
+      <h3>Registrar Nueva Mascota</h3>
+      <form class="pet__formReg" [formGroup]="petFormReg" (ngSubmit)="petRegister(petFormReg.value)">
+        <div class="form-row">
+          <div class="col">
+            <label>Nombre</label>
+            <input formControlName="name" type="text" class="form-control" placeholder="Nombres">
+          </div>
+          <div class="col">
+            <label>Especie</label>
+            <input formControlName="species" type="text" class="form-control" placeholder="Especie">
+          </div>
+          <div class="col">
+            <label>Raza</label>
+            <input formControlName="breed" type="text" class="form-control" placeholder="Raza">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label>Color</label>
+            <input formControlName="color" type="text" class="form-control" placeholder="Color">
+          </div>
+          <div class="col">
+            <label>Fecha de nacimiento</label>
+            <input formControlName="birthdate" type="date" class="form-control" placeholder="Fecha de Nacimiento">
+          </div>
+          <div class="col">
+            <label>Sexo</label>
+            <select formControlName="sex" class="form-control">
+              <option value="Macho">Macho</option>
+              <option value="Hembra">Hembra</option>
+            </select>
+          </div>
+          <!-- <div class="col">
+            <div class="form-check">
+              <input formControlName="sex" class="form-check-input" type="radio" name="sexRadioButton" id="exampleRadios1" value="option1">
+              <label class="form-check-label" for="exampleRadios1">
+                Macho
+              </label>
+            </div>
+            <div class="form-check">
+              <input formControlName="sex" class="form-check-input" type="radio" name="sexRadioButton" id="exampleRadios2" value="option2">
+              <label class="form-check-label" for="exampleRadios2">
+                Hembra
+              </label>
+            </div>
+          </div> -->
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="petFormReg.invalid">Registrar Nueva Mascota</button>
+      </form>
+      <button class="btn btn-secondary" (click)="switchPetList()">Cancelar</button>
+    </div>
+
+    <!-- pet list -->
+
+    <div class="pet__container row" [hidden]="!switchListpet">
+      <div class="col">
+        <ngb-accordion [closeOthers]="true" activeIds="static-0" class="accordion">
+
+          <ngb-panel id="static-{{i}}" *ngFor="let pet of pets; index as i">
+
+            <ng-template ngbPanelTitle>
+              <h3>Nombre de Mascota:<span><b> {{pet.name}}</b> </span></h3>
+            </ng-template>
+
+            <ng-template ngbPanelContent>
+
+              <div class="row">
+
+                <div class="col-7">
+                  <h3><span>Datos Generales</span></h3>
+                </div>
+                <div class="col-5">
+                  <h3><span>Acciones</span></h3>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-7">
+
+                  <!-- <h3><span>Datos Generales</span></h3> -->
+
+                  <div class="form-group row">
+
+                    <div class="col-4">
+                      <label class="col col-form-label"><b>Nombre:</b></label>
+                      <label class="col col-form-label"><b>Especie:</b></label>
+                      <label class="col col-form-label"><b>Raza:</b></label>
+                      <label class="col col-form-label"><b>Color:</b></label>
+                      <label class="col col-form-label"><b>Sexo:</b></label>
+                      <label class="col col-form-label"><b>Fecha de Nacimiento:</b></label>
+                    </div>
+
+                    <div class="col">
+                      <label class="col col-form-label">{{ pet.name }}</label>
+                      <label class="col col-form-label">{{ pet.species }}</label>
+                      <label class="col col-form-label">{{ pet.breed }}</label>
+                      <label class="col col-form-label">{{ pet.color }}</label>
+                      <label class="col col-form-label">{{ pet.sex }}</label>
+                      <label class="col col-form-label">{{ pet.birthdate }}</label>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="col">
+                  <!-- <h3><span>Acciones</span></h3> -->
+
+                  <div class="form-group row">
+                    <div class="col">
+                      <button class="btn btn-primary" (click)="goToPetSimpleServices(pet.id)">Crear o Ver los Servicios Simples</button>
+                    </div>
+
+                    <div class="col">
+                      <button class="btn btn-primary" (click)="goToPetHospitalizedServices(pet.id)">Crear o Ver Servicios de Internado</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group row d-flex justify-content-center">
+                    <!-- <div class="col">
+                      <button class="btn btn-primary" (click)="goToPetClinicalHistory(pet.id)">Crear o Ver el Historial Clínico</button>
+                    </div> -->
+
+                    <div class="col-6">
+                      <button class="btn btn-primary" (click)="goToPetVaccinationCards(pet.id)">Crear o Ver Tarjetas de Vacunas</button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </ng-template>
+          </ngb-panel>
+
+        </ngb-accordion>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLINICAL HISTORY -->
+  <!-- <div class="pet-clinical-historyContainer container">
+    <router-outlet></router-outlet>
+  </div> -->
+
+</div>

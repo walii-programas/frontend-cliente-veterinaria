@@ -14,12 +14,12 @@ export class ForgotPasswordService {
   ) {}
 
   // variables
-  private urlApi = this.gAuthServ.urlApiClient;
+  private urlApi = this.gAuthServ.urlApiAdmin;
 
   // methods
   requestPasswordChange(email: string) {
     return this.http.post(
-      this.urlApi + `/client/clients/forgot-password`,
+      this.urlApi + `/admin/vets/forgot-password`,
       this.gAuthServ.getFormUrlEncoded({
         email: email
       }),
@@ -29,7 +29,7 @@ export class ForgotPasswordService {
 
   changePassword(password: string, verification_token: string) {
     return this.http.put(
-      this.urlApi + `/client/clients/change-password/${verification_token}`,
+      this.urlApi + `/admin/vets/change-password/${verification_token}`,
       this.gAuthServ.getFormUrlEncoded({
         password: password
       }),

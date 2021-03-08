@@ -34,10 +34,10 @@ export class ForgotPasswordUpdateComponent implements OnInit {
       console.log(res);
       this.spinnerStatus = false;
       alert('Contraseña actualizada satisfactoriamente');
-      this.router.navigateByUrl('/iniciar-sesion');
+      this.router.navigateByUrl('/login');
     }, (err) => {
       console.log(err);
-      alert('El token no es válido');
+      alert('Este token ya expiró');
       this.spinnerStatus = false;
     });
   }

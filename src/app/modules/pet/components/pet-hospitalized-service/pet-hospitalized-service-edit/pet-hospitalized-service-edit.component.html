@@ -1,0 +1,78 @@
+<div class="pet-hospitalized-service-edit">
+
+  <div class="container">
+    <h3>Actualizar Servicio de Internado</h3>
+    <button class="btn btn-primary" (click)="backToPetHospitalizedServices()">Volver a Servicios de Internado de la Mascota</button>
+    
+    <hr>
+
+    <div class="spinner-border" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+
+    <form class="pet-simple-service__formReg" [formGroup]="hospitalizedServiceFormUpdate" (ngSubmit)="updateHospitalizedService(hospitalizedServiceFormUpdate.value)">
+      
+      <div class="row">
+
+        <!-- data hospitalized service -->
+        <div class="col">
+          <h4><span>Datos del servicio</span></h4>
+          <div class="form-row">
+            <div class="col">
+              <label>Diagnóstico</label>
+              <input formControlName="diagnosis" type="text" class="form-control" placeholder="Diagnóstico">
+            </div>
+            <div class="col-3">
+              <label>Costo</label>
+              <input formControlName="cost" type="number" class="form-control" placeholder="Costo">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <label>Descripción</label>
+              <textarea formControlName="description" cols="30" rows="8" class="form-control"
+                placeholder="Descripción"></textarea>
+            </div>
+            <div class="col">
+              <label>Tratamiento</label>
+              <textarea formControlName="treatment" cols="30" rows="8" class="form-control"
+                placeholder="Tratamiento"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- data pet -->
+        <div class="col">
+          <h4><span>Datos de la mascota</span></h4>
+          <div class="form-row">
+            <div class="col">
+              <label>Peso</label>
+              <input formControlName="weight" type="number" class="form-control" placeholder="Peso">
+            </div>
+            <div class="col">
+              <label>Temperatura</label>
+              <input formControlName="temperature" type="number" class="form-control" placeholder="Temperatura">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <label>Síntomas</label>
+              <textarea formControlName="symptoms" cols="30" rows="8" class="form-control"
+                placeholder="Síntomas"></textarea>
+            </div>
+            <div class="col">
+              <label>Observaciones</label>
+              <textarea formControlName="observations" cols="30" rows="8" class="form-control"
+                placeholder="Observaciones"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="hospitalizedServiceFormUpdate.invalid">Actualizar Servicio de Internado</button>
+    </form>
+    <button class="btn btn-secondary" (click)="backToPetHospitalizedServices()">Cancelar</button>
+  </div>
+
+</div>

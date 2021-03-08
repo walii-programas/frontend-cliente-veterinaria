@@ -1,0 +1,74 @@
+<div class="client-edit">
+
+  <div class="container">
+
+    <div class="row">
+      <h2>Editar Cliente</h2>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" (click)="backToClients()">Volver a Lista de Clientes</button>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <h3>Editar Datos del Cliente</h3>
+    <form class="client__formUpdate" [formGroup]="clientFormUpdate" (ngSubmit)="updateClient(clientFormUpdate.value)">
+      <div class="form-row">
+        <div class="col">
+          <label>Nombres</label>
+          <input formControlName="firstname" type="text" class="form-control" placeholder="Nombres">
+        </div>
+        <div class="col">
+          <label>Apellidos</label>
+          <input formControlName="lastname" type="text" class="form-control" placeholder="Apellidos">
+        </div>
+        <div class="col">
+          <label>DNI</label>
+          <input formControlName="dni" type="text" class="form-control" placeholder="DNI">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label>Número de Celular</label>
+          <input formControlName="phone" type="tel" class="form-control" placeholder="Número de celular">
+        </div>
+        <div class="col">
+          <label>Dirección de hogar</label>
+          <input formControlName="address" type="text" class="form-control" placeholder="Dirección hogar">
+        </div>
+        <div class="col">
+          <label>Correo Electrónico</label>
+          <input formControlName="email" type="text" class="form-control" placeholder="Correo Electrónico">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="clientFormUpdate.invalid">Actualizar Datos del Cliente</button>
+    </form>
+    <button class="btn btn-secondary" (click)="backToClients()">Cancelar</button>
+  </div>
+
+  <div class="container vet__spinner">
+    <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- update password -->
+  <div class="container">
+    <h3>Actualizar contraseña del cliente</h3>
+    <form class="client__formUpdate" [formGroup]="clientPasswordForm" (ngSubmit)="updatePassword(clientPasswordForm.value)">
+      <div class="form-row">
+        <div class="col-4">
+          <input formControlName="password" type="password" class="form-control" placeholder="Contraseña nueva">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="clientPasswordForm.invalid">Actualizar Contraseña</button>
+    </form>
+    <button class="btn btn-secondary" (click)="backToClients()">Cancelar</button>
+  </div>
+
+</div>

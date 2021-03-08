@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "veterinariasancarlos-frontend-client": {
+    "veterinariasancarlos-frontend-admin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/veterinariasancarlos-frontend-client",
+            "outputPath": "dist/veterinariasancarlos-frontend-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "veterinariasancarlos-frontend-client:build"
+            "browserTarget": "veterinariasancarlos-frontend-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "veterinariasancarlos-frontend-client:build:production"
+              "browserTarget": "veterinariasancarlos-frontend-admin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "veterinariasancarlos-frontend-client:build"
+            "browserTarget": "veterinariasancarlos-frontend-admin:build"
           }
         },
         "test": {
@@ -116,16 +116,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "veterinariasancarlos-frontend-client:serve"
+            "devServerTarget": "veterinariasancarlos-frontend-admin:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "veterinariasancarlos-frontend-client:serve:production"
+              "devServerTarget": "veterinariasancarlos-frontend-admin:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "veterinariasancarlos-frontend-client"
+  "defaultProject": "veterinariasancarlos-frontend-admin"
 }

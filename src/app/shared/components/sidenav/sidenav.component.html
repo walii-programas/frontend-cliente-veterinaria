@@ -1,0 +1,66 @@
+<nav class="navbar">
+  <ul class="navbar-nav">
+
+    <li class="nav-item" routerLink="/home/mi-perfil">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/home.svg" alt="home">
+        <span class="link-text">Inicio</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/home/clientes">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/clients.svg" alt="clients">
+        <span class="link-text">Clientes</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/home/servicios">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/healthcare.svg" alt="services">
+        <span class="link-text">Servicios</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/home/blog">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/blog.svg" alt="vets">
+        <span class="link-text">Blog</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/home/vacunas">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/vaccine.svg" alt="vaccines">
+        <span class="link-text">Vacunas</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/home/roles">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/role.svg" alt="roles">
+        <span class="link-text">Roles</span>
+      </a>
+    </li>
+
+    <li class="nav-item" routerLink="/home/veterinarios">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/doctor.svg" alt="vets">
+        <span class="link-text">Veterinarios</span>
+      </a>
+    </li>
+
+    <li class="nav-item" id="themeButton">
+      <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+        <span class="sr-only">Cargando...</span>
+      </div>
+    </li>
+
+    <li class="nav-item" id="themeButton" (click)="logout()">
+      <a class="nav-link">
+        <img src="../../../../assets/svg/logout.svg" alt="logout">
+        <span class="link-text">Cerrar Cesión</span>
+      </a>
+    </li>
+  </ul>
+</nav>

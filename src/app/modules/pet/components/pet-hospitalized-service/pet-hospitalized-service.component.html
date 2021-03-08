@@ -1,0 +1,245 @@
+<div class="pet-hospitalized-service">
+
+  <div class="container">
+
+    <!-- menu -->
+
+    <div class="pet-hospitalized-service__menu">
+
+      <div class="row">
+        <h2>Servicios de Internado</h2>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <h3>- Servicios Registrados de: <span> {{ pet.name }} </span> </h3>
+          <h3>- Dueño de Mascota: <span> {{ client.firstname }} {{ client.lastname }} </span> </h3>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" (click)="switchToPetHospitalizedServicesList()">Lista de Servicios Registrados</button>
+          <button class="btn btn-primary" (click)="switchToHospitalizedServiceForm()">Registrar Nuevo Servicio de Internado</button>
+          <button class="btn btn-secondary" (click)="backToPets()">Volver a Mascotas</button>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="spinner-border" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+
+    <!-- register new pet simple service -->
+
+    <div class="container" *ngIf="switchHospitalizedServiceFormReg">
+      <h3>Registrar Nuevo Servicio de Internado</h3>
+      <form class="pet-simple-service__formReg" [formGroup]="hospitalizedServiceFormReg" (ngSubmit)="registerHospitalizedService(hospitalizedServiceFormReg.value)">
+        
+        <div class="row">
+
+          <!-- data hospitalized service -->
+          <div class="col">
+            <h4><span>Datos del servicio</span></h4>
+            <div class="form-row">
+              <div class="col">
+                <label>Diagnóstico</label>
+                <input formControlName="diagnosis" type="text" class="form-control" placeholder="Diagnóstico">
+              </div>
+              <div class="col-3">
+                <label>Costo</label>
+                <input formControlName="cost" type="number" class="form-control" placeholder="Costo">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <label>Descripción</label>
+                <textarea formControlName="description" cols="30" rows="8" class="form-control"
+                  placeholder="Descripción"></textarea>
+              </div>
+              <div class="col">
+                <label>Tratamiento</label>
+                <textarea formControlName="treatment" cols="30" rows="8" class="form-control"
+                  placeholder="Tratamiento"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- data pet -->
+          <div class="col">
+            <h4><span>Datos de la mascota</span></h4>
+            <div class="form-row">
+              <div class="col">
+                <label>Peso</label>
+                <input formControlName="weight" type="number" class="form-control" placeholder="Peso">
+              </div>
+              <div class="col">
+                <label>Temperatura</label>
+                <input formControlName="temperature" type="number" class="form-control" placeholder="Temperatura">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <label>Síntomas</label>
+                <textarea formControlName="symptoms" cols="30" rows="8" class="form-control"
+                  placeholder="Síntomas"></textarea>
+              </div>
+              <div class="col">
+                <label>Observaciones</label>
+                <textarea formControlName="observations" cols="30" rows="8" class="form-control"
+                  placeholder="Observaciones"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="hospitalizedServiceFormReg.invalid">Registrar Nuevo Servicio de Internado</button>
+      </form>
+      <button class="btn btn-secondary" (click)="switchToPetHospitalizedServicesList()">Cancelar</button>
+    </div>
+
+    <!-- simple services list -->
+
+    <div class="pet__container row" [hidden]="!switchHospitalizedServiceList">
+      <div class="col">
+        <ngb-accordion [closeOthers]="true" activeIds="static-0" class="accordion">
+
+          <ngb-panel id="static-{{i}}" *ngFor="let phc of hospitalizedServices; index as i">
+
+            <ng-template ngbPanelTitle>
+              <div class="container">
+                <div class="row">
+                  <h3 class="col">
+                    Diagnóstico:
+                    <span>
+                      <b> {{ phc.hospitalizedService.diagnosis }} </b>
+                    </span>
+                  </h3>
+                  <h3 class="col">
+                    Fecha del Servicio de Internado:
+                    <span>
+                      <b> {{ phc.hospitalizedService.date }} </b>
+                    </span>
+                  </h3>
+                </div>
+                <!-- <hr> -->
+                <!-- <div class="row">
+                </div> -->
+                <!-- <hr> -->
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" (click)="goToEditHospitalizedService(phc.hospitalizedService.id)">Actualizar este Servicio de Internado</button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <ng-template ngbPanelContent>
+
+              <div class="row">
+                <div class="col">
+                  <h3><span>Datos del Servicio de Internado</span></h3>
+                </div>
+                <div class="col">
+                  <h3><span>Datos de la mascota en el momento del servicio</span></h3>
+                </div>
+                <div class="col">
+                  <h3><span>Veterinario que registró el servicio</span></h3>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-4">
+
+                  <!-- <h3><span>Datos del Servicio Simple</span></h3> -->
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Fecha de Creación:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.date }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Descripción:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.description }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Tratamiento:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.treatment }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Costo:</b>
+                    <label class="col col-form-label">S/ {{ phc.hospitalizedService.cost }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Última Actualización:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.updated_at }}</label>
+                  </div>
+
+                </div>
+
+                <div class="col-4">
+
+                  <!-- <h3><span>Datos de la mascota en el momento del servicio</span></h3> -->
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Peso:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.weight }} Kg.</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Temperatura:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.temperature }} °C</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Síntomas:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.symptoms }}</label>
+                  </div>
+
+                  <div class="form-group row">
+                    <b class="col-5 col-form-label">Observaciones:</b>
+                    <label class="col col-form-label">{{ phc.hospitalizedService.observations }}</label>
+                  </div>
+
+                </div>
+
+                <div class="col-4">
+
+                  <!-- <h3><span>Veterinario que registró el servicio</span></h3> -->
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group row">
+                        <b class="col-4 col-form-label">Nombre completo:</b>
+                        <label class="col col-form-label"> {{ phc.vet.firstname }} {{ phc.vet.lastname }}</label>
+                      </div>
+                      <div class="form-group row">
+                        <b class="col-4 col-form-label">Código de veterinario:</b>
+                        <label class="col col-form-label"> {{ phc.vet.cmvp }}</label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </ng-template>
+
+          </ngb-panel>
+
+        </ngb-accordion>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -6,15 +6,16 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
 })
 
 export class GlobalAuthService {
-
-  constructor(private http: HttpClient) { }
+  
+  constructor(private http: HttpClient) {}
 
   // public variables
-  public urlApiClient = 'http://localhost:8000/api';
+  public urlApiAdmin = 'http://localhost:8000/api';
+
   public currentLoginStatus: number;
 
   // public metods
-  public getFormUrlEncoded(toConvert: any) {
+  public getFormUrlEncoded(toConvert:any) {
     const formBody = [];
     for (const property in toConvert) {
       const encodedKey = encodeURIComponent(property);
@@ -31,33 +32,45 @@ export class GlobalAuthService {
     });
   }
 
+  // public getLoginStatus(): boolean {
+  //   if(localStorage.getItem('token') !== null) {
+  //       let current = new Date(Date.now() + (parseInt(localStorage.getItem('expires_in')) - 3600000));
+  //       let actual = new Date();
+  //       if (actual > current) {
+  //           return true;
+  //       } else {
+  //           return false;
+  //       }
+  //   }
+  //   return false;
+  // }
+
   public getLoginStatus(): boolean {
-    if (localStorage.getItem('token') !== null) {
-      let current = parseInt(localStorage.getItem('expires_in'));
-      let actual = Date.now();
-      if (actual < current) {
-        return true;
-      } else {
-        localStorage.clear();
-        return false;
-      }
+    if(localStorage.getItem('token') !== null) {
+        let current = parseInt(localStorage.getItem('expires_in'));
+        let actual = Date.now();
+        if (actual < current) {
+            return true;
+        } else {
+            return false;
+        }
     }
     return false;
   }
 
   public logout() {
     return this.http.post(
-      this.urlApiClient + '/auth/logout',
+      this.urlApiAdmin + '/auth/logout',
       {},
-      { headers: this.getHeaders() }
+      {headers: this.getHeaders()}
     );
   }
 
   private refreshToken() {
     return this.http.post(
-      this.urlApiClient + '/auth/refresh',
+      this.urlApiAdmin + '/auth/refresh',
       {},
-      { headers: this.getHeaders() }
+      {headers: this.getHeaders()}
     )
   }
 

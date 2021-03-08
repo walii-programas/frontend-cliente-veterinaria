@@ -1,0 +1,156 @@
+<div class="vet-edit">
+
+  <div class="container">
+
+    <div class="row">
+      <h2>Editar Veterinario</h2>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" (click)="backToVets()">Volver a Lista de veterinarios</button>
+      <!-- <button class="btn btn-primary" (click)="switchPageReg()">Registrar nuevo veterinario</button> -->
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <h3>Editar Datos del Veterinario</h3>
+    <form class="vet__formUpdate" [formGroup]="vetFormUpdate" (ngSubmit)="updateVet(vetFormUpdate.value)">
+      <div class="form-row">
+        <div class="col">
+          <label>Nombres</label>
+          <input formControlName="firstname" type="text" class="form-control" placeholder="Nombres">
+        </div>
+        <div class="col">
+          <label>Apellidos</label>
+          <input formControlName="lastname" type="text" class="form-control" placeholder="Apellidos">
+        </div>
+        <div class="col">
+          <label>DNI</label>
+          <input formControlName="dni" type="text" class="form-control" placeholder="DNI">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label>Número de Celular</label>
+          <input formControlName="phone" type="tel" class="form-control" placeholder="Número de celular">
+        </div>
+        <div class="col-8">
+          <label>Dirección Hogar</label>
+          <input formControlName="address" type="text" class="form-control" placeholder="Dirección hogar">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label>Correo Electrónico</label>
+          <input formControlName="email" type="text" class="form-control" placeholder="Correo Electrónico">
+        </div>
+        <!-- <div class="col">
+          <input formControlName="password" type="password" class="form-control" placeholder="Contraseña">
+        </div> -->
+        <div class="col">
+          <label>CMVP</label>
+          <input formControlName="cmvp" type="cmvp" class="form-control" placeholder="CMVP">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="vetFormUpdate.invalid">Actualizar Datos del
+        Veterinario</button>
+    </form>
+    <button class="btn btn-secondary" (click)="backToVets()">Cancelar</button>
+  </div>
+
+  <div class="container vet__spinner">
+    <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <h3>Roles Disponibles</h3>
+      </div>
+      <div class="col">
+        <h3>Roles del Veterinario</h3>
+      </div>
+    </div>
+
+    <!-- Vet roles table -->
+    <div class="row">
+      <div class="col">
+        <table class="table table-borderless table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre del Rol</th>
+              <th scope="col">Agregar Rol</th>
+              <!-- <th scope="col">Quitar Rol</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rol of allRoles; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ rol.name }}</td>
+              <td>
+                <button class="btn btn-primary" *ngIf="validateRoles(rol.name)" (click)="asignRole(rol.id)">Asignar
+                  Rol</button>
+              </td>
+              <!-- <td>
+              <button class="btn btn-primary">Quitar Rol</button>
+            </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <table class="table table-borderless table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre del Rol</th>
+              <!-- <th scope="col">Agregar Rol</th> -->
+              <th scope="col">Quitar Rol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rol of roles; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ rol.name }}</td>
+              <!-- <td>
+              <button class="btn btn-primary">Asignar Rol</button>
+            </td> -->
+              <td>
+                <button class="btn btn-primary" (click)="denyRole(rol.id)">Quitar Rol</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- update password -->
+    <div class="container">
+      <h3>Actualizar contraseña del veterinario</h3>
+      <form class="vet__formUpdate" [formGroup]="vetPasswordForm"
+        (ngSubmit)="updatePassword(vetPasswordForm.value)">
+        <div class="form-row">
+          <div class="col-4">
+            <input formControlName="password" type="password" class="form-control" placeholder="Contraseña nueva">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="vetPasswordForm.invalid">Actualizar
+          Contraseña</button>
+      </form>
+      <button class="btn btn-secondary" (click)="backToVets()">Cancelar</button>
+    </div>
+
+  </div>
+
+</div>

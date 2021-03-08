@@ -1,0 +1,115 @@
+<div class="vet">
+
+  <div class="container">
+
+    <div class="row">
+      <h2>Veterinarios</h2>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" (click)="switchPageList()">Lista de veterinarios</button>
+      <button class="btn btn-primary" (click)="switchPageReg()">Registrar nuevo veterinario</button>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="container" *ngIf="switchRegVet">
+    <h3>Registrar Nuevo Veterinario</h3>
+    <form class="vet__formReg" [formGroup]="vetFormReg" (ngSubmit)="vetRegister(vetFormReg.value)">
+      <div class="form-row">
+        <div class="col">
+          <label>Nombres</label>
+          <input formControlName="firstname" type="text" class="form-control" placeholder="Nombres">
+        </div>
+        <div class="col">
+          <label>Apellidos</label>
+          <input formControlName="lastname" type="text" class="form-control" placeholder="Apellidos">
+        </div>
+        <div class="col">
+          <label>DNI</label>
+          <input formControlName="dni" type="number" class="form-control" placeholder="DNI">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label>Número de celular</label>
+          <input formControlName="phone" type="number" class="form-control" placeholder="Número de celular">
+        </div>
+        <div class="col-8">
+          <label>Dirección de hogar</label>
+          <input formControlName="address" type="text" class="form-control" placeholder="Dirección hogar">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col">
+          <label>Correo electrónico</label>
+          <input formControlName="email" type="text" class="form-control" placeholder="Correo Electrónico">
+        </div>
+        <div class="col">
+          <label>Contraseña</label>
+          <input formControlName="password" type="password" class="form-control" placeholder="Contraseña">
+        </div>
+        <div class="col">
+          <label>CMVP</label>
+          <input formControlName="cmvp" type="cmvp" class="form-control" placeholder="CMVP">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="vetFormReg.invalid">Registrar Nuevo Veterinario</button>
+    </form>
+    <button class="btn btn-secondary" (click)="switchPageList()">Cancelar</button>
+  </div>
+
+  <div class="container vet__spinner">
+    <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+  </div>
+  
+  <div class="container" [hidden]="!switchListVet">
+
+    <form class="vet__formSearch">
+      <div class="form-group form-inline">
+          Buscar veterinario: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+      </div>
+    </form>
+    
+    <table class="table table-borderless table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombres y Apellidos</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Número de Celular</th>
+        <th scope="col">CMVP</th>
+        <th scope="col">Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let vet of vets$ | async; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+          <ngb-highlight [result]="vet.firstname + ' ' + vet.lastname" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="vet.dni" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="vet.phone" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="vet.cmvp" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="goToEditVet(vet.id)">Editar datos</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    
+
+  </div>
+
+</div>

@@ -1,0 +1,66 @@
+<div class="role">
+
+  <div class="container">
+
+    <div class="row">
+      <h2>Roles</h2>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" (click)="switchPageList()">Lista de Roles</button>
+      <button class="btn btn-primary" (click)="switchPageReg()">Registrar nuevo Rol</button>
+    </div>
+
+  </div>
+
+  <div class="container" *ngIf="switchRegRole">
+    <h3>Registrar Nuevo Rol</h3>
+    <form class="role__form-reg" [formGroup]="roleFormReg" (ngSubmit)="roleRegister(roleFormReg.value)">
+      <div class="form-row">
+        <div class="col">
+          <label>Nombre del rol</label>
+          <input formControlName="name" type="text" class="form-control" placeholder="Nombre del rol">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="roleFormReg.invalid">Registrar Nuevo Rol</button>
+    </form>
+    <button class="btn btn-secondary" (click)="switchPageList()">Cancelar</button>
+  </div>
+
+  <div class="container role__spinner">
+    <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+  </div>
+  
+  <div class="container" [hidden]="!switchListRole">
+
+    <form class="role__form-search">
+      <div class="form-group form-inline">
+          Buscar Rol: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+      </div>
+    </form>
+    
+    <table class="table table-borderless table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre de Rol</th>
+        <!-- <th scope="col">Acción</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let role of roles$ | async; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <ngb-highlight [result]="role.name" [term]="filter.value"></ngb-highlight>
+        </td>
+        <!-- <td>
+          <button class="btn btn-primary">Editar datos</button>
+        </td> -->
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

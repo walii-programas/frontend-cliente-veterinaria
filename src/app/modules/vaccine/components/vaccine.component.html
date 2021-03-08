@@ -1,0 +1,97 @@
+<div class="vaccine">
+
+  <div class="container">
+
+    <div class="row">
+      <h2>Vacunas</h2>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" (click)="switchPageList()">Lista de Vacunas</button>
+      <button class="btn btn-primary" (click)="switchPageReg()">Registrar nueva Vacuna</button>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="container" *ngIf="switchRegVaccine">
+    <h3>Registrar Nueva Vacuna</h3>
+    <form class="vaccine__formReg" [formGroup]="vaccineFormReg" (ngSubmit)="vaccineRegister(vaccineFormReg.value)">
+      <div class="form-row">
+        <div class="col">
+          <label>Nombre de la vacuna</label>
+          <input formControlName="name" type="text" class="form-control" placeholder="Nombre de la vacuna">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="vaccineFormReg.invalid">Registrar Nueva Vacuna</button>
+    </form>
+    <button class="btn btn-secondary" (click)="switchPageList()">Cancelar</button>
+  </div>
+
+  <div class="container vaccine__spinner">
+    <div class="spinner-border text-primary" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+  </div>
+  
+  <div class="container" [hidden]="!switchListVaccine">
+
+    <form class="vaccine__formSearch">
+      <div class="form-group form-inline">
+          Buscar Vacuna: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+      </div>
+    </form>
+    
+    <div class="row">
+
+      <div class="col">
+        <table class="table table-borderless table-hover">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre de Vacuna</th>
+            <!-- <th scope="col">Acción</th> -->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let vaccine of vaccines$ | async; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <ngb-highlight [result]="vaccine.name" [term]="filter.value"></ngb-highlight>
+            </td>
+            <!-- <td>
+              <button class="btn btn-primary">Editar datos</button>
+            </td> -->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <table class="table table-borderless table-hover">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre de Vacuna</th>
+            <th scope="col">Cantidad Utilizadas</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let vaccine of vaccinesAndUsedQuantity; index as i">
+            <th scope="row">-</th>
+            <td>
+              <ngb-highlight [result]="vaccine.name"></ngb-highlight>
+            </td>
+            <td>
+              <b><ngb-highlight [result]="vaccine.quantity"></ngb-highlight></b> <span> unidades utilizadas</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

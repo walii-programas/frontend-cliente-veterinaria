@@ -1,0 +1,107 @@
+<div class="pet-clinical-history">
+
+  <div class="container">
+
+    <!-- menu -->
+
+    <div class="pet-clininal-history__menu">
+
+      <div class="row">
+        <h2>Historial Clínico</h2>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <h3>- Historial Clínico de: <span> {{ pet.name }} </span> </h3>
+          <h3>- Dueño de Mascota: <span> {{ client.firstname }} {{ client.lastname }} </span> </h3>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" (click)="switchPetClinicalHistoryList()">Lista del Historial Clínico</button>
+          <button class="btn btn-primary" (click)="switchPetClinicalHistoryReg()">Registrar nuevo Historial Clínico</button>
+          <button class="btn btn-secondary" (click)="backToPets()">Volver a Mascotas</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="spinner-border" role="status" *ngIf="spinnerStatus">
+      <span class="sr-only">Cargando...</span>
+    </div>
+
+    <!-- register new pet clinical history -->
+
+    <div class="container" *ngIf="switchRegclinicalhistory">
+      <h3>Registrar Nuevo Historial Clínico</h3>
+      <form class="pet-clinical-history__formReg" [formGroup]="clinicalHistoryFormReg" (ngSubmit)="clinicalHistoryRegister(clinicalHistoryFormReg.value)">
+        <div class="form-row">
+          <div class="col">
+            <input formControlName="weight" type="number" class="form-control" placeholder="Peso">
+          </div>
+          <div class="col">
+            <input formControlName="temperature" type="number" class="form-control" placeholder="Temperatura">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <textarea formControlName="observations" cols="30" rows="8" class="form-control" placeholder="Observaciones"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="clinicalHistoryFormReg.invalid">Registrar Nuevo Historial Clínico</button>
+      </form>
+      <button class="btn btn-secondary" (click)="switchPetClinicalHistoryList()">Cancelar</button>
+    </div>
+
+    <!-- clinical history list -->
+
+    <div class="pet__container row" [hidden]="!switchListclinicalhistory">
+      <div class="col">
+        <ngb-accordion [closeOthers]="true" activeIds="static-0" class="accordion">
+
+          <ngb-panel id="static-{{i}}" *ngFor="let pch of clinicalHistories; index as i">
+
+            <ng-template ngbPanelTitle>
+              <h3>Fecha de creación:<span><b> {{ pch.date }} </b></span></h3>
+            </ng-template>
+
+            <ng-template ngbPanelContent>
+              
+              <h3>Datos del Historial Clínico</h3>
+
+              <div class="col-7">
+
+                <div class="form-group row">
+                  <label class="col col-form-label">Fecha de Creación:</label>
+                  <label class="col col-form-label">{{ pch.date }}</label>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col col-form-label">Peso:</label>
+                  <label class="col col-form-label">{{ pch.weight }} Kg.</label>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col col-form-label">Temperatura:</label>
+                  <label class="col col-form-label">{{ pch.temperature }} °C</label>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col col-form-label">Observaciones:</label>
+                  <label class="col col-form-label">{{ pch.observations }}</label>
+                </div>
+
+              </div>
+
+            </ng-template>
+
+          </ngb-panel>
+
+        </ngb-accordion>
+      </div>
+    </div>
+
+  </div>
+
+</div>
